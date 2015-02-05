@@ -25,12 +25,15 @@ angular.module('ui.dashboard')
           return attr.templateUrl ? attr.templateUrl : 'template/dashboard-layouts.html';
         },
         link: function(scope, element, attrs) {
-
           scope.options = scope.$eval(attrs.dashboardLayouts);
-
           var layoutStorage = new LayoutStorage(scope.options);
-
           scope.layouts = layoutStorage.layouts;
+
+          scope.$watch('options.widgetDefinitions', function(val) {
+              console.error('widgetdefinitions changed!', val, layoutStorage);
+              layoutStorage = new LayoutStorage(scope.options);
+              scope.layouts = layoutStorage.layouts;
+            }, true);
 
           scope.createNewLayout = function() {
             var newLayout = {

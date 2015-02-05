@@ -34,6 +34,7 @@ angular.module('ui.dashboard')
     
 
     function LayoutStorage(options) {
+      console.log('layoutStorage', options);
 
       var defaults = {
         storage: noopStorage,
@@ -81,6 +82,8 @@ angular.module('ui.dashboard')
           layout.dashboard.stringifyStorage = false;
           layout.dashboard.defaultWidgets = layout.defaultWidgets || self.defaultWidgets;
           layout.dashboard.widgetButtons = self.widgetButtons;
+          layout.dashboard.hideToolbar = self.options.hideToolbar;
+          layout.dashboard.hideWidgetName = self.options.hideWidgetName;
           layout.dashboard.explicitSave = self.explicitSave;
           layout.dashboard.settingsModalOptions = self.settingsModalOptions;
           layout.dashboard.onSettingsClose = self.onSettingsClose;

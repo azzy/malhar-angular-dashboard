@@ -328,12 +328,15 @@ angular.module('ui.dashboard')
           return attr.templateUrl ? attr.templateUrl : 'template/dashboard-layouts.html';
         },
         link: function(scope, element, attrs) {
-
           scope.options = scope.$eval(attrs.dashboardLayouts);
-
           var layoutStorage = new LayoutStorage(scope.options);
-
           scope.layouts = layoutStorage.layouts;
+
+          scope.$watch('options.widgetDefinitions', function(val) {
+              console.error('widgetdefinitions changed!', val, layoutStorage);
+              layoutStorage = new LayoutStorage(scope.options);
+              scope.layouts = layoutStorage.layouts;
+            }, true);
 
           scope.createNewLayout = function() {
             var newLayout = {
@@ -448,6 +451,7 @@ angular.module('ui.dashboard')
       };
     }
   ]);
+
 /*
  * Copyright (c) 2014 DataTorrent, Inc. ALL Rights Reserved.
  *
@@ -549,6 +553,7 @@ angular.module('ui.dashboard')
     
 
     function LayoutStorage(options) {
+      console.log('layoutStorage', options);
 
       var defaults = {
         storage: noopStorage,
@@ -596,6 +601,8 @@ angular.module('ui.dashboard')
           layout.dashboard.stringifyStorage = false;
           layout.dashboard.defaultWidgets = layout.defaultWidgets || self.defaultWidgets;
           layout.dashboard.widgetButtons = self.widgetButtons;
+          layout.dashboard.hideToolbar = self.options.hideToolbar;
+          layout.dashboard.hideWidgetName = self.options.hideWidgetName;
           layout.dashboard.explicitSave = self.explicitSave;
           layout.dashboard.settingsModalOptions = self.settingsModalOptions;
           layout.dashboard.onSettingsClose = self.onSettingsClose;
@@ -766,6 +773,7 @@ angular.module('ui.dashboard')
     };
     return LayoutStorage;
   });
+
 /*
  * Copyright (c) 2014 DataTorrent, Inc. ALL Rights Reserved.
  *
