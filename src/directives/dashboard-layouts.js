@@ -30,7 +30,6 @@ angular.module('ui.dashboard')
           scope.layouts = layoutStorage.layouts;
 
           scope.$watch('options.widgetDefinitions', function(val) {
-              console.error('widgetdefinitions changed!', val, layoutStorage);
               layoutStorage = new LayoutStorage(scope.options);
               scope.layouts = layoutStorage.layouts;
             }, true);
