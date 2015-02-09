@@ -1567,6 +1567,7 @@ angular.module("ui.dashboard").run(["$templateCache", function($templateCache) {
   );
 
   $templateCache.put("template/dashboard.html",
+    "\n" +
     "<div>\n" +
     "    <div class=\"btn-toolbar\" ng-if=\"!options.hideToolbar\">\n" +
     "        <div class=\"btn-group\" ng-if=\"!options.widgetButtons\">\n" +
@@ -1600,7 +1601,8 @@ angular.module("ui.dashboard").run(["$templateCache", function($templateCache) {
     "            <div class=\"widget panel panel-default\">\n" +
     "                <div class=\"widget-header panel-heading\">\n" +
     "                    <h3 class=\"panel-title\">\n" +
-    "                        <span class=\"widget-title\" ng-dblclick=\"editTitle(widget)\" ng-hide=\"widget.editingTitle\">{{widget.title}}</span>\n" +
+    "                        <span class=\"widget-title\" ng-dblclick=\"editTitle(widget)\" ng-hide=\"widget.editingTitle\">{{widget.title}} </span>\n" +
+    "                        <span data-tooltip aria-haspopup=\"true\" class=\"glyphicon glyphicon-question-sign has-tip\" title=\"{{widget.description}}\" style=\"float:none; border-bottom:none\"></span>\n" +
     "                        <form action=\"\" class=\"widget-title\" ng-show=\"widget.editingTitle\" ng-submit=\"saveTitleEdit(widget)\">\n" +
     "                            <input type=\"text\" ng-model=\"widget.title\" class=\"form-control\">\n" +
     "                        </form>\n" +
