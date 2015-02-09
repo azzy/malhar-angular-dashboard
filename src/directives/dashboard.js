@@ -137,6 +137,22 @@ angular.module('ui.dashboard')
           return widget;
         };
 
+        scope.minimizeWidget = function (widget) {
+          //scope.widgets.splice(_.indexOf(scope.widgets, widget), 1);
+          //console.log(widget.containerStyle);
+          // TODO: Refactor and remove the hardcoded values
+          if (widget.containerStyle.height !== '66px'){
+            widget.containerStyle.height = '66px';
+            widget.contentStyle.display = 'none';
+          }
+          else {
+            widget.containerStyle.height = '400px';
+            widget.contentStyle.display = 'block';
+          }
+          //TODO
+          scope.saveDashboard();
+        };
+
         /**
          * Removes a widget instance from the dashboard
          * @param  {Object} widget The widget instance object (not a definition object)

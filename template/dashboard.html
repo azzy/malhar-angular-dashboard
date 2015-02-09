@@ -35,8 +35,9 @@
                         <form action="" class="widget-title" ng-show="widget.editingTitle" ng-submit="saveTitleEdit(widget)">
                             <input type="text" ng-model="widget.title" class="form-control">
                         </form>
-                        <span class="label label-primary" ng-if="!options.hideWidgetName">{{widget.name}}</span>
+                        <!-- <span class="label label-primary" ng-if="!options.hideWidgetName">{{widget.name}}</span> -->
                         <span ng-click="removeWidget(widget);" class="glyphicon glyphicon-remove" ng-if="!options.hideWidgetClose"></span>
+                        <span ng-click="minimizeWidget(widget);" class="glyphicon glyphicon-minus" ng-if="!options.hideWidgetMinimize"></span>
                         <span ng-click="openWidgetSettings(widget);" class="glyphicon glyphicon-cog" ng-if="!options.hideWidgetSettings"></span>
                     </h3>
                 </div>

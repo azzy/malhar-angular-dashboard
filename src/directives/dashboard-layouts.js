@@ -96,6 +96,16 @@ angular.module('ui.dashboard')
             return !!layout.active;
           };
 
+          scope.currentLayout = function(layouts){
+            var layout =  _.find(layouts, function(layout){
+                          if (layout.active){
+                            return layout;
+                          }
+                        }
+            );
+            return layout.title;
+          };
+
           scope.editTitle = function(layout) {
             if (layout.locked) {
               return;

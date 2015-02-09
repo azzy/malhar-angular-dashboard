@@ -137,6 +137,22 @@ angular.module('ui.dashboard')
           return widget;
         };
 
+        scope.minimizeWidget = function (widget) {
+          //scope.widgets.splice(_.indexOf(scope.widgets, widget), 1);
+          //console.log(widget.containerStyle);
+          // TODO: Refactor and remove the hardcoded values
+          if (widget.containerStyle.height !== '66px'){
+            widget.containerStyle.height = '66px';
+            widget.contentStyle.display = 'none';
+          }
+          else {
+            widget.containerStyle.height = '400px';
+            widget.contentStyle.display = 'block';
+          }
+          //TODO
+          scope.saveDashboard();
+        };
+
         /**
          * Removes a widget instance from the dashboard
          * @param  {Object} widget The widget instance object (not a definition object)
@@ -397,6 +413,16 @@ angular.module('ui.dashboard')
 
           scope.isActive = function(layout) {
             return !!layout.active;
+          };
+
+          scope.currentLayout = function(layouts){
+            var layout =  _.find(layouts, function(layout){
+                          if (layout.active){
+                            return layout;
+                          }
+                        }
+            );
+            return layout.title;
           };
 
           scope.editTitle = function(layout) {
@@ -1578,8 +1604,9 @@ angular.module("ui.dashboard").run(["$templateCache", function($templateCache) {
     "                        <form action=\"\" class=\"widget-title\" ng-show=\"widget.editingTitle\" ng-submit=\"saveTitleEdit(widget)\">\n" +
     "                            <input type=\"text\" ng-model=\"widget.title\" class=\"form-control\">\n" +
     "                        </form>\n" +
-    "                        <span class=\"label label-primary\" ng-if=\"!options.hideWidgetName\">{{widget.name}}</span>\n" +
+    "                        <!-- <span class=\"label label-primary\" ng-if=\"!options.hideWidgetName\">{{widget.name}}</span> -->\n" +
     "                        <span ng-click=\"removeWidget(widget);\" class=\"glyphicon glyphicon-remove\" ng-if=\"!options.hideWidgetClose\"></span>\n" +
+    "                        <span ng-click=\"minimizeWidget(widget);\" class=\"glyphicon glyphicon-minus\" ng-if=\"!options.hideWidgetMinimize\"></span>\n" +
     "                        <span ng-click=\"openWidgetSettings(widget);\" class=\"glyphicon glyphicon-cog\" ng-if=\"!options.hideWidgetSettings\"></span>\n" +
     "                    </h3>\n" +
     "                </div>\n" +
