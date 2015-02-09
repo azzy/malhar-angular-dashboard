@@ -34,6 +34,8 @@ angular.module('ui.dashboard')
           onSettingsDismiss: Class.onSettingsDismiss,
           style: Class.style || {},
           size: Class.size || {},
+          layout: Class.layout || '',
+          description: Class.description || 'Please check back again!',
           enableVerticalResize: (Class.enableVerticalResize === false) ? false : true
         };
 
